@@ -5,6 +5,7 @@ import { AuthApiResponse } from '../models/auth-api-response';
 import { SessionStorageService } from './session-storage.service';
 import { User } from '../models/user';
 import { newUser } from '../models/new-user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class AuthService {
 
   private isAuthenticatedSignal = signal<boolean>(false)
   isAuthenticated = computed(() => this.isAuthenticatedSignal())
+
+  private router: Router = inject(Router)
 
   constructor() { }
 
@@ -31,12 +34,16 @@ export class AuthService {
   tryToLoginObserved(email: string | null, password: string | null){
     return this.tryToLogin(email, password).subscribe({
       next: (response: AuthApiResponse<string>) => {
-        if (response.code == '200'){this.setToken(response.data)}
+        if (response.code == '200'){
+          this.setToken(response.data)
+          this.router.navigate(['home'])
+        }
       },
       error: (error: Error) => {console.error(error);}
     })
   }
 
+  //TODO what do we do with the JWT token?
   setToken(token: string){
     this.seshService.set('userToken', token)
     this.isAuthenticatedSignal.set(true)
@@ -45,6 +52,8 @@ export class AuthService {
   logOut(){
     this.seshService.clear()
     this.isAuthenticatedSignal.set(false)
+    this.router.navigate(['home'])
+    
   }
   
   tryToRegister(newUser: newUser) {

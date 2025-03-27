@@ -16,11 +16,13 @@ export class HeaderComponent {
     {name: 'Login', path: '/login', seeWhenAnon: true, seeWhenLogged: false}, 
     {name: 'Register', path: '/register', seeWhenAnon: true, seeWhenLogged: false}, 
     {name: 'Profile', path: '/profile', seeWhenAnon: false, seeWhenLogged: true}, 
-    {name: 'Logout', path: '/logout', seeWhenAnon: false, seeWhenLogged: true}, 
     {name: 'Error', path: '/error', seeWhenAnon: true, seeWhenLogged: true}, 
     {name: 'About', path: '/about', seeWhenAnon: true, seeWhenLogged: true}, 
   ]
   private readonly authService: AuthService = inject(AuthService)
   isAuthenticated = inject(AuthService).isAuthenticated
 
+  logOut() {
+    this.authService.logOut()
+  }
 }
