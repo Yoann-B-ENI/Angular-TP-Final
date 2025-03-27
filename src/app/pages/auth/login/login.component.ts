@@ -22,9 +22,11 @@ export class LoginComponent {
     ).subscribe({
       next: (response: AuthApiResponse<string>) => {
         console.log(response.code)
-        console.log(response.message)
-        console.log(response.data)
-        this.authService.setToken(response.data)
+        if (response.code == '200'){
+          console.log(response.message)
+          console.log(response.data)
+          this.authService.setToken(response.data)
+        }
       },
       error: (error: Error) => {
         console.error(error);

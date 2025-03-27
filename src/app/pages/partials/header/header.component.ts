@@ -20,17 +20,7 @@ export class HeaderComponent {
     {name: 'Error', path: '/error', seeWhenAnon: true, seeWhenLogged: true}, 
     {name: 'About', path: '/about', seeWhenAnon: true, seeWhenLogged: true}, 
   ]
-
   private readonly authService: AuthService = inject(AuthService)
-  isLoggedIn: boolean = false
-
-  ngOnInit(){
-    this.isLoggedIn = this.authService.currentlyLoggedIn()
-  }
-
-  CheckIfLoggedIn(){
-    console.log(this.authService.currentlyLoggedIn())
-    return this.authService.currentlyLoggedIn()
-  }
+  isAuthenticated = inject(AuthService).isAuthenticated
 
 }

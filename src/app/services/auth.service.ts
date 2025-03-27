@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { AuthApiResponse } from '../models/auth-api-response';
 
@@ -11,7 +11,10 @@ export class AuthService {
   AUTH_URL = environment.auth_api
   private readonly http: HttpClient = inject(HttpClient)
 
-  userToken: string = ''
+  userToken: string = '' //TODO use for something?
+
+  private isAuthenticatedSignal = signal<boolean>(false)
+  isAuthenticated = computed(() => this.isAuthenticatedSignal())
 
   constructor() { }
 
@@ -25,10 +28,12 @@ export class AuthService {
 
   setToken(token: string){
     this.userToken = token
+    this.isAuthenticatedSignal.set(true)
   }
 
-  currentlyLoggedIn(){
-    return this.userToken != ''
+  logOut(){
+    this.userToken = ''
+    this.isAuthenticatedSignal.set(false)
   }
   
 }

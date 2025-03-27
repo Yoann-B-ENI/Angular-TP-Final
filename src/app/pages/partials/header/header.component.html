@@ -9,7 +9,7 @@
       <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
 
         @for (link of links; track link) {
-            @if (CheckIfLoggedIn()) {
+            @if (isAuthenticated()) {
               @if (link.seeWhenLogged) {
                 <a class="mr-5 hover:text-white" [routerLink]="link.path">{{link.name}}</a>
               }
