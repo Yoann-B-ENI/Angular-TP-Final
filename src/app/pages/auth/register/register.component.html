@@ -6,61 +6,129 @@
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Create a new account here.</p>
       </div>
 
-      <div class="lg:w-1/2 md:w-2/3 mx-auto">
-        <div class="flex flex-wrap -m-2">
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="username" class="leading-7 text-sm text-gray-400">Username</label>
-              <input type="text" id="username" name="username" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
-              <input type="email" id="email" name="email" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-full">
-            <div class="relative">
-              <label for="password" class="leading-7 text-sm text-gray-400">Password</label>
-              <input type="password" id="password" name="password" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-full">
-            <div class="relative">
-              <label for="phone" class="leading-7 text-sm text-gray-400">Phone Number</label>
-              <input type="text" id="phone" name="phone" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="zipcode" class="leading-7 text-sm text-gray-400">Zip Code</label>
-              <input type="text" id="zipcode" name="zipcode" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="cityname" class="leading-7 text-sm text-gray-400">City Name</label>
-              <input type="text" id="cityname" name="cityname" 
-              class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
+      <form [formGroup]="registrationForm" (submit)="tryToRegister()">
+        
+        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+            <div class="flex flex-wrap -m-2">
 
-          <div class="p-2 w-full">
-            <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg" 
-            (click)="tryToRegister()"
-            >
-                Register
-            </button>
-          </div>
+                <div class="p-2 w-1/2">
+                    <div class="relative">
+                    <label for="username" class="leading-7 text-sm text-gray-400">Username</label>
+                    <input type="text" id="username" name="username" formControlName="username"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.username.hasError('required')) {
+                        <p>username required</p>
+                    }
+                    @if (registrationForm.controls.username.hasError('minlength')) {
+                        <p>username min length 4</p>
+                    }
+                    @if (registrationForm.controls.username.hasError('maxlength')) {
+                        <p>username max length 128</p>
+                    }
+                    </div>
+                </div>
+                <div class="p-2 w-1/2">
+                    <div class="relative">
+                    <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
+                    <input type="email" id="email" name="email" formControlName="email"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.email.hasError('required')) {
+                        <p>email required</p>
+                    }
+                    @if (registrationForm.controls.email.hasError('email')) {
+                        <p>email format</p>
+                    }
+                    @if (registrationForm.controls.email.hasError('minlength')) {
+                        <p>email min length 6</p>
+                    }
+                    @if (registrationForm.controls.email.hasError('maxlength')) {
+                        <p>email max length 128</p>
+                    }
+                    </div>
+                </div>
+                <div class="p-2 w-full">
+                    <div class="relative">
+                    <label for="password" class="leading-7 text-sm text-gray-400">Password</label>
+                    <input type="password" id="password" name="password" formControlName="password"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.password.hasError('required')) {
+                        <p>password required</p>
+                    }
+                    @if (registrationForm.controls.password.hasError('minlength')) {
+                        <p>password min length 4</p>
+                    }
+                    @if (registrationForm.controls.password.hasError('maxlength')) {
+                        <p>password max length 128</p>
+                    }
+                    </div>
+                </div>
+                <div class="p-2 w-full">
+                    <div class="relative">
+                    <label for="phoneNumber" class="leading-7 text-sm text-gray-400">Phone Number</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.phoneNumber.hasError('required')) {
+                        <p>phoneNumber required</p>
+                    }
+                    @if (registrationForm.controls.phoneNumber.hasError('minlength')) {
+                        <p>phoneNumber min length 10</p>
+                    }
+                    @if (registrationForm.controls.phoneNumber.hasError('maxlength')) {
+                        <p>phoneNumber max length 10</p>
+                    }
+                    </div>
+                </div>
+                <div class="p-2 w-1/2">
+                    <div class="relative">
+                    <label for="zipCode" class="leading-7 text-sm text-gray-400">Zip Code</label>
+                    <input type="text" id="zipCode" name="zipCode" formControlName="zipCode"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.zipCode.hasError('required')) {
+                        <p>zipCode required</p>
+                    }
+                    @if (registrationForm.controls.zipCode.hasError('minlength')) {
+                        <p>zipCode min length 5</p>
+                    }
+                    @if (registrationForm.controls.zipCode.hasError('maxlength')) {
+                        <p>zipCode max length 5</p>
+                    }
+                    </div>
+                </div>
+                <div class="p-2 w-1/2">
+                    <div class="relative">
+                    <label for="cityName" class="leading-7 text-sm text-gray-400">City Name</label>
+                    <input type="text" id="cityName" name="cityName" formControlName="cityName"
+                    class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-pink-500 focus:bg-gray-900 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                    @if (registrationForm.controls.cityName.hasError('required')) {
+                        <p>cityName required</p>
+                    }
+                    @if (registrationForm.controls.cityName.hasError('minlength')) {
+                        <p>cityName min length 4</p>
+                    }
+                    @if (registrationForm.controls.cityName.hasError('maxlength')) {
+                        <p>cityName max length 128</p>
+                    }
+                    </div>
+                </div>
 
+                <div class="p-2 w-full">
+                    <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg" 
+                    (click)="tryToRegister()"
+                    >
+                        Register
+                    </button>
+                </div>
+
+            </div>
         </div>
 
-      </div>
+        </form>
+
     </div>
   </section>
