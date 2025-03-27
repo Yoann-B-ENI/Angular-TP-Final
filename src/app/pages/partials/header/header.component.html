@@ -9,7 +9,16 @@
       <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
 
         @for (link of links; track link) {
-            <a class="mr-5 hover:text-white" [routerLink]="link.path">{{link.name}}</a>
+            @if (CheckIfLoggedIn()) {
+              @if (link.seeWhenLogged) {
+                <a class="mr-5 hover:text-white" [routerLink]="link.path">{{link.name}}</a>
+              }
+            } 
+            @else {
+              @if (link.seeWhenAnon) {
+                <a class="mr-5 hover:text-white" [routerLink]="link.path">{{link.name}}</a>
+              }
+            }
         }
         
       </nav>
