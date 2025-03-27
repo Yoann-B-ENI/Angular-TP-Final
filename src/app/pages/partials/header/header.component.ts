@@ -12,7 +12,7 @@ export class HeaderComponent {
   links: any[] = [
     {name: 'Home', path: '/', seeWhenAnon: true, seeWhenLogged: true}, 
     {name: 'free space', path: '/', seeWhenAnon: true, seeWhenLogged: true}, 
-    {name: 'free space 2', path: '/', seeWhenAnon: false, seeWhenLogged: true}, 
+    {name: 'Artist List', path: '/artists', seeWhenAnon: false, seeWhenLogged: true}, 
     {name: 'Login', path: '/login', seeWhenAnon: true, seeWhenLogged: false}, 
     {name: 'Register', path: '/register', seeWhenAnon: true, seeWhenLogged: false}, 
     {name: 'Profile', path: '/profile', seeWhenAnon: false, seeWhenLogged: true}, 
