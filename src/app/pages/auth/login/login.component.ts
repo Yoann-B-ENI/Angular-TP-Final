@@ -18,20 +18,7 @@ export class LoginComponent {
   private readonly authService: AuthService = inject(AuthService)
 
   tryToLogin() {
-    this.authService.tryToLogin(this.loginForm.controls.email.value, this.loginForm.controls.password.value
-    ).subscribe({
-      next: (response: AuthApiResponse<string>) => {
-        console.log(response.code)
-        if (response.code == '200'){
-          // console.log(response.message)
-          // console.log(response.data)
-          this.authService.setToken(response.data)
-        }
-      },
-      error: (error: Error) => {
-        console.error(error);
-      }
-    })
+    this.authService.tryToLoginObserved(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
   }
 
 }

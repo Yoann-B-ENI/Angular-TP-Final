@@ -28,6 +28,15 @@ export class AuthService {
     return this.http.post<AuthApiResponse<string>>(this.AUTH_URL+"/login", body, {headers})
   }
 
+  tryToLoginObserved(email: string | null, password: string | null){
+    return this.tryToLogin(email, password).subscribe({
+      next: (response: AuthApiResponse<string>) => {
+        if (response.code == '200'){this.setToken(response.data)}
+      },
+      error: (error: Error) => {console.error(error);}
+    })
+  }
+
   setToken(token: string){
     this.seshService.set('userToken', token)
     this.isAuthenticatedSignal.set(true)
@@ -45,4 +54,20 @@ export class AuthService {
     })
     return this.http.post<AuthApiResponse<User>>(this.AUTH_URL+"/signup", body, {headers})
   }
+
+  //TODO put the auto-login into a pipe/rxjs something
+  //TODO use the user data in response.data for something?
+  tryToRegisterObserved(newUser: newUser){
+    return this.tryToRegister(newUser).subscribe({
+      next: (response: AuthApiResponse<User>) => {
+        if (response.code == '200'){
+          this.tryToLoginObserved(response.data.email, response.data.password)
+        }
+      },
+      error: (error: Error) => {console.error(error);}
+    })
+  }
+
+
+
 }

@@ -32,20 +32,7 @@ export class RegisterComponent {
       cityCode: this.registrationForm.controls.zipCode.value!,
       city: this.registrationForm.controls.cityName.value!
     }
-    this.authService.tryToRegister(newUser).subscribe({
-      next: (response: AuthApiResponse<User>) => {
-        console.log(response.code)
-        console.log(response.message)
-        if (response.code == '200'){
-          console.log(response.data)
-          //TODO do something with the new user?
-          //TODO run login?
-        }
-      },
-      error: (error: Error) => {
-        console.error(error);
-      }
-    })
+    this.authService.tryToRegisterObserved(newUser)
   }
 
 }
