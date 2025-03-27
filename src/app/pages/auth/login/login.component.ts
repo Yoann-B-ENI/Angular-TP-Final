@@ -23,8 +23,8 @@ export class LoginComponent {
       next: (response: AuthApiResponse<string>) => {
         console.log(response.code)
         if (response.code == '200'){
-          console.log(response.message)
-          console.log(response.data)
+          // console.log(response.message)
+          // console.log(response.data)
           this.authService.setToken(response.data)
         }
       },
@@ -32,9 +32,6 @@ export class LoginComponent {
         console.error(error);
       }
     })
-
-    console.log(this.loginForm.controls.email.value)
-    console.log(this.loginForm.controls.password.value)
   }
 
 }

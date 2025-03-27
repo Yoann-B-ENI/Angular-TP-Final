@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { AuthApiResponse } from '../models/auth-api-response';
+import { SessionStorageService } from './session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,7 @@ export class AuthService {
 
   AUTH_URL = environment.auth_api
   private readonly http: HttpClient = inject(HttpClient)
-
-  userToken: string = '' //TODO use for something?
+  private readonly seshService: SessionStorageService = inject(SessionStorageService)
 
   private isAuthenticatedSignal = signal<boolean>(false)
   isAuthenticated = computed(() => this.isAuthenticatedSignal())
@@ -27,12 +27,12 @@ export class AuthService {
   }
 
   setToken(token: string){
-    this.userToken = token
+    this.seshService.set('userToken', token)
     this.isAuthenticatedSignal.set(true)
   }
 
   logOut(){
-    this.userToken = ''
+    this.seshService.clear()
     this.isAuthenticatedSignal.set(false)
   }
   
