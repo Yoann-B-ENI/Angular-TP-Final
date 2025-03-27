@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { newUser } from '../../../models/new-user';
+import { AuthApiResponse } from '../../../models/auth-api-response';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -16,10 +20,32 @@ export class RegisterComponent {
     zipCode: new FormControl('44000', [Validators.required, Validators.minLength(5), Validators.maxLength(5)])​, 
     cityName: new FormControl('Nantes', [Validators.required, Validators.minLength(4), Validators.maxLength(128)])​, 
   })
-  
+  private readonly authService: AuthService = inject(AuthService)
 
   tryToRegister() {
-  throw new Error('Method not implemented.');
+    const newUser: newUser = {
+      email: this.registrationForm.controls.email.value!,
+      pseudo: this.registrationForm.controls.username.value!,
+      password: this.registrationForm.controls.password.value!,
+      passwordConfirm: this.registrationForm.controls.password.value!,
+      phone: this.registrationForm.controls.phoneNumber.value!,
+      cityCode: this.registrationForm.controls.zipCode.value!,
+      city: this.registrationForm.controls.cityName.value!
+    }
+    this.authService.tryToRegister(newUser).subscribe({
+      next: (response: AuthApiResponse<User>) => {
+        console.log(response.code)
+        console.log(response.message)
+        if (response.code == '200'){
+          console.log(response.data)
+          //TODO do something with the new user?
+          //TODO run login?
+        }
+      },
+      error: (error: Error) => {
+        console.error(error);
+      }
+    })
   }
 
 }

@@ -3,6 +3,8 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { AuthApiResponse } from '../models/auth-api-response';
 import { SessionStorageService } from './session-storage.service';
+import { User } from '../models/user';
+import { newUser } from '../models/new-user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +38,11 @@ export class AuthService {
     this.isAuthenticatedSignal.set(false)
   }
   
+  tryToRegister(newUser: newUser) {
+    const body = JSON.stringify(newUser)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+    return this.http.post<AuthApiResponse<User>>(this.AUTH_URL+"/signup", body, {headers})
+  }
 }
