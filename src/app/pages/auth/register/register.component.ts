@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { newUser } from '../../../models/new-user';
-import { AuthApiResponse } from '../../../models/auth-api-response';
-import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-register',
