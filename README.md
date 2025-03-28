@@ -1,8 +1,9 @@
 # Angular Project - Local API + Art Institute of Chicago API
 
 Angular v19 2-day project featuring: 
-- Working navigation
+- Working navigation, parent-children routes
 - FormGroup, FormControl for login and registration forms, validator errors
+- JSON stringify to prepare objects to be sent in HTTP(S), when necessary, generic ApiResponse<T> objects to receive requests smoothly, one per API
 - Registering auto-logs you
 - Signal in the header component (to listen to whether we're logged in)
 - Auth token stored in session storage, cleared when logging out
