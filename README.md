@@ -1,6 +1,6 @@
 # Angular Project - Local API + Art Institute of Chicago API
 
-Angular v19 project featuring: 
+Angular v19 2-day project featuring: 
 - Working navigation
 - FormGroup, FormControl for login and registration forms, validator errors
 - Registering auto-logs you
