@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtworkComponent } from './pages/artwork/artwork.component';
 
 export const routes: Routes = [
     {path: '', title: 'Angular ArtIC TP', component: HomeComponent}, 
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: 'profile', title: 'Profile', component: ProfileComponent}, 
     {path: 'artists/:id', title: 'Artist', component: ArtistComponent}, 
     {path: 'artists', title: 'Artists', component: ArtistsComponent}, 
+    {path: 'artworks/:id', title: 'Artist', component: ArtworkComponent}, 
     {path: '**', title: 'Error', component: ErrorComponent}, 
 ];

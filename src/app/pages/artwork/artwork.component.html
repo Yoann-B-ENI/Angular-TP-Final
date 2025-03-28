@@ -2,11 +2,11 @@
     <div class="container px-5 py-24 mx-auto">
 
       <div class="flex flex-col text-center w-full mb-20">
-        @if (artist != null && artist != undefined) {
-          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">{{artist.title}}</h1>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{artist.id}}</p>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{artist.birth_date}} - {{artist.death_date}}</p>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base" [innerHTML]="artist.description"></p>
+        @if (artwork != null &&artwork != undefined) {
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">{{artwork.title}}</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{artwork.id}}</p>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{artwork.date_display}}</p>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base" [innerHTML]="artwork.description"></p>
         }
         @else{
           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Loading artist...</h1>
@@ -15,20 +15,18 @@
 
       <div class="flex flex-wrap -m-4">
 
-        @for (artwork of images; track artwork) {
+        @if(artwork != null && artwork != undefined) {
           <div class="lg:w-1/3 sm:w-1/2 p-4">
             <div class="flex relative">
               <img alt={{artwork.thumbnail.alt_text}} class="absolute inset-0 w-full h-full object-cover object-center" src={{artwork.thumbnail.lqip}}
               >
               <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
                 <h2 class="tracking-widest text-sm title-font font-medium text-pink-400 mb-1">{{artwork.title}}</h2>
-                <h1 class="title-font text-lg font-medium text-white mb-3"><a [routerLink]="['/artworks', artwork.id]">{{artwork.title}}</a></h1>
-                <p class="leading-relaxed">{{artist.title}}</p>
               </div>
             </div>
           </div>
         }
-        @empty {
+        @else {
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Artworks loading...</p>
         }
 

@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ArtApiResponse } from '../models/art-api-response';
 import { Artist } from '../models/artist';
+import { ShortImage } from '../models/short-image';
+import { Image } from '../models/image';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +42,21 @@ export class ArtApiServiceService {
     return this.http.get<ArtApiResponse<T>>(url, {headers})
   }
 
-  fetchArtworksByArtistId(artistId: number){
+  fetchArtworksByArtistId(artistId: string){
     const headers = new HttpHeaders({
       'AIC-User-Agent': this.AICHeaderContent
     })
-    return this.http.get<ArtApiResponse<Artist>>(
+    return this.http.get<ArtApiResponse<ShortImage[]>>(
       this.ART_URL+'/artworks/search?query[term][artist_id]='+artistId+'&fields=id,title,thumbnail', {headers}
+    )
+  }
+
+  fetchArtworkById(artworkId: string){
+    const headers = new HttpHeaders({
+      'AIC-User-Agent': this.AICHeaderContent
+    })
+    return this.http.get<ArtApiResponse<Image>>(
+      this.ART_URL+'/artworks/'+artworkId, {headers}
     )
   }
 
