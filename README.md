@@ -11,8 +11,12 @@ Angular v19 project featuring:
 - Tried both having the observable of an API request in the service (for all auth calls) and in the components (for all art API calls)
 - 
 
-TODO: 
+TODO/to try to integrate for the exercise: 
 - add links, credits to readme
 - custom text splice pipe to add a '...' after a description cut-short
 - custom validator for email, password
+- Input/Output
+- RxJS operators (pipe, takeuntil, of...)
+- Subject, BehaviorSubject
+- Guard
 - 
