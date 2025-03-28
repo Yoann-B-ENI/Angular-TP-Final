@@ -16,7 +16,11 @@ export class AuthService {
   private readonly http: HttpClient = inject(HttpClient)
   private readonly seshService: SessionStorageService = inject(SessionStorageService)
 
-  private isAuthenticatedSignal = signal<boolean>(false)
+  private isAuthenticatedSignal = signal<boolean>(
+    this.seshService.get('userToken') != null && 
+    this.seshService.get('userToken') != undefined && 
+    this.seshService.get('userToken') != ''
+  )
   isAuthenticated = computed(() => this.isAuthenticatedSignal())
 
   private router: Router = inject(Router)
