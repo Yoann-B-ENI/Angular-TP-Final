@@ -1,59 +1,18 @@
-# AngularTp
+# Angular Project - Local API + Art Institute of Chicago API
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+Angular v19 project featuring: 
+- Working navigation
+- FormGroup, FormControl for login and registration forms, validator errors
+- Registering auto-logs you
+- Signal in the header component (to listen to whether we're logged in)
+- Auth token stored in session storage, cleared when logging out
+- Authentication calls a local API for login and registration
+- Artists, Artworks pages call the Art Institute of Chicago API, big, real-world requests and responses (it's the API they use for their own sites). 
+- Tried both having the observable of an API request in the service (for all auth calls) and in the components (for all art API calls)
+- 
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+TODO: 
+- add links, credits to readme
+- custom text splice pipe to add a '...' after a description cut-short
+- custom validator for email, password
+- 
