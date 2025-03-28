@@ -1,7 +1,7 @@
 export interface Artist {
     id: number
     title: string
-    sort_title: string
+    // sort_title: string
     birth_date?: number
     death_date?: number
     description?: string

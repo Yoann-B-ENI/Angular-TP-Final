@@ -1,0 +1,11 @@
+<p>artist works!</p>
+
+@if (artist != null && artist != undefined) {
+  <h2>{{artist.title}}</h2>
+  <p>{{artist.id}}</p>
+  <p>{{artist.birth_date}}</p>
+  <p>{{artist.death_date}}</p>
+  <p>{{artist.description}}</p>
+} @else {
+  <p>Artist loading (if doesn't load try again later)</p>
+}

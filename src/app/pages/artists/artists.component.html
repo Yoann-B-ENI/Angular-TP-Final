@@ -1,5 +1,8 @@
 <p>artists works!</p>
 
 @for (artist of artists; track artist) {
-    <p>{{artist.title}}</p>
+    <p><a [routerLink]="['/artists', artist.id]">{{artist.title}}</a></p>
+}
+@empty {
+    <p>Artists currently loading</p>
 }

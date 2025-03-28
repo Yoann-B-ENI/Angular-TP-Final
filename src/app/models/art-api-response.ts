@@ -1,7 +1,7 @@
 export interface ArtApiResponse<T> {
     preference?: any, 
     pagination?: any, 
-    data: T[], 
+    data: T, 
     info?: any, 
     config?: any
 }

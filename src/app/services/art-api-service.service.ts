@@ -23,13 +23,15 @@ export class ArtApiServiceService {
       'AIC-User-Agent': this.AICHeaderContent
     })
     // https://api.artic.edu/api/v1/artists?page=2&limit=10&fields=id,title,birth_date,death_date,description
-    const params = new HttpParams({
-
-    })
-    return this.http.get<ArtApiResponse<Artist>>(this.ART_URL+'/artists?page=2&limit=10&fields=id,title,birth_date,death_date,description')
+    return this.http.get<ArtApiResponse<Artist[]>>(this.ART_URL+'/artists?page=2&limit=10&fields=id,title,birth_date,death_date,description', {headers})
   }
   
-
+  fetchArtist(id: number){
+    const headers = new HttpHeaders({
+      'AIC-User-Agent': this.AICHeaderContent
+    })
+    return this.http.get<ArtApiResponse<Artist>>(this.ART_URL+'/artists/'+id+'?fields=id,title,birth_date,death_date,description', {headers})
+  }
 
 
 }

@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ArtApiServiceService } from '../../services/art-api-service.service';
 import { ArtApiResponse } from '../../models/art-api-response';
 import { Artist } from '../../models/artist';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-artists',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './artists.component.html',
   styleUrl: './artists.component.scss'
 })
@@ -16,7 +17,7 @@ export class ArtistsComponent {
 
   ngOnInit(){
     this.artService.fetchArtists().subscribe({
-      next: (response: ArtApiResponse<Artist>) => {
+      next: (response: ArtApiResponse<Artist[]>) => {
         console.log(response)
         this.artists = response.data
       },
