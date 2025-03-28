@@ -18,7 +18,7 @@
         @if(artwork != null && artwork != undefined) {
           <div class="lg:w-1/3 sm:w-1/2 p-4">
             <div class="flex relative">
-              <img alt={{artwork.thumbnail.alt_text}} class="absolute inset-0 w-full h-full object-cover object-center" src={{artwork.thumbnail.lqip}}
+              <img alt={{artwork.thumbnail.alt_text}} src={{image_path}}
               >
               <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
                 <h2 class="tracking-widest text-sm title-font font-medium text-pink-400 mb-1">{{artwork.title}}</h2>
