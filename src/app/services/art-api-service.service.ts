@@ -23,7 +23,7 @@ export class ArtApiServiceService {
       'AIC-User-Agent': this.AICHeaderContent
     })
     // https://api.artic.edu/api/v1/artists?page=2&limit=10&fields=id,title,birth_date,death_date,description
-    return this.http.get<ArtApiResponse<Artist[]>>(this.ART_URL+'/artists?page=2&limit=10&fields=id,title,birth_date,death_date,description', {headers})
+    return this.http.get<ArtApiResponse<Artist[]>>(this.ART_URL+'/artists?page=2&limit=9&fields=id,title,birth_date,death_date,description', {headers})
   }
   
   fetchArtist(id: number){
@@ -33,5 +33,20 @@ export class ArtApiServiceService {
     return this.http.get<ArtApiResponse<Artist>>(this.ART_URL+'/artists/'+id+'?fields=id,title,birth_date,death_date,description', {headers})
   }
 
+  runGetQuery<T>(url: string){
+    const headers = new HttpHeaders({
+      'AIC-User-Agent': this.AICHeaderContent
+    })
+    return this.http.get<ArtApiResponse<T>>(url, {headers})
+  }
+
+  fetchArtworksByArtistId(artistId: number){
+    const headers = new HttpHeaders({
+      'AIC-User-Agent': this.AICHeaderContent
+    })
+    return this.http.get<ArtApiResponse<Artist>>(
+      this.ART_URL+'/artworks/search?query[term][artist_id]='+artistId+'&fields=id,title,thumbnail', {headers}
+    )
+  }
 
 }

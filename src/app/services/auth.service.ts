@@ -53,7 +53,6 @@ export class AuthService {
     this.seshService.clear()
     this.isAuthenticatedSignal.set(false)
     this.router.navigate(['home'])
-    
   }
   
   tryToRegister(newUser: newUser) {
